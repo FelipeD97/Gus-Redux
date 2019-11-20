@@ -1,7 +1,24 @@
 import React, { useContext } from "react";
 import  StateContext from "../context";
 
+import Styled from "styled-components";
 import "./activity.css"
+
+const Button = Styled.button`
+    display: inline-block;
+    color: #7a161e;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid #7a161e;
+    border-radius: 3px;
+    display: block;`;
+
+const Input = Styled.input`
+    border: 2px solid #7a161e;
+    border-radius: 3px;
+    margin: 1rem;
+    font-size: 16px;`;
 
 const Activity = () => {
     const [value, dispatch] = useContext(StateContext);
@@ -42,47 +59,49 @@ const Activity = () => {
     return ( 
         <div>
             <h1 className="title">The Cat's Activity</h1>
-            <input 
-            className="text-info"
-            type="text" 
-            name="newName"
-            placeholder="name"
-            onChange={handleChange} />
-            <input
-            className="text-info"
-            type="text"
-            activity="activity"
-            placeholder="activity"
-            onChange={handleUpdate} />
-            <input
-            className="text-info"
-            type="text"
-            value1="value1"
-            placeholder="new cat" />
-            <button onClick={handleNew}>Add Cat</button>
-            <p className="title">
+            <div className="container">
+                <Input
+                type="text" 
+                name="newName"
+                placeholder="name"
+                onChange={handleChange} />
+                <Input
+                type="text"
+                activity="activity"
+                placeholder="activity"
+                onChange={handleUpdate} />
+                <Input
+                type="text"
+                value1="value1"
+                placeholder="new cat" />
+                <Button onClick={handleNew}>Add Cat</Button>
+            </div>
+            <p className="text-info">
                 {value.name} is {value.activity}
             </p>
-            <p className="title">
+            <p>
                 {value.newCat}
             </p>
-            <ul style={{ listStyleType: "none"}}>
-                <li>
-                    <button onClick={handleClick} value="eating">
-                        Eating
-                    </button>
-                </li>
-                <li>
-                    <button onClick={handleClick} value="playing">
-                        Playing
-                    </button>
-                </li>
-                <li>
-                    <button onClick={handleClick} value="napping">
-                        Napping
-                    </button>
-                </li>
-            </ul>
+            <div className="activity-button-container">
+                <ul style={{ listStyleType: "none"}}>
+                    <li>
+                        <Button onClick={handleClick} value="eating">
+                            Eating
+                        </Button>
+                    </li>
+                    <li>
+                        <Button onClick={handleClick} value="playing">
+                            Playing
+                        </Button>
+                    </li>
+                    <li>
+                        <Button onClick={handleClick} value="napping">
+                            Napping
+                        </Button>
+                    </li>
+                </ul>
+            </div>
+            
         </div>
     );
 };

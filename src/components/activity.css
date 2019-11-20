@@ -2,8 +2,20 @@
     text-align: center;
 }
 
-.text-info {
+.container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.text-info {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 24px;
+}
+
+.activity-button-container {
+    display: flex;
+    justify-content: space-evenly;
     flex-direction: row;
 }
