@@ -1,41 +1,90 @@
-import React from "react";
+import React, { useContext } from "react";
+import  StateContext from "../context";
 
-import { connect } from "react-redux";
-import { catNap, catEat, catPlay, setName } from "../redux/activity";
+import "./activity.css"
 
-const Activity = ({ activity, catNap, catEat, catPlay, setName, name }) => {
-    return (
+const Activity = () => {
+    const [value, dispatch] = useContext(StateContext);
+    console.log(value);
+    
+    const handleClick = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: "changeActivity",
+            activity: e.target.value
+        });
+    };
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: "changeName",
+            newName: e.target.value
+        })
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: "newActivity",
+            activity: e.target.value
+        })
+    }
+
+    const handleNew = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: "addCat",
+            newCat: e.target.value
+        })
+    }
+
+    return ( 
         <div>
-            <h1>Cat Reducer</h1>
-            <input type="text" placeholder="Enter name" onChange={(e) => setName(e.target.value)}></input>
-            <p>{name} is {activity}</p>
+            <h1 className="title">The Cat's Activity</h1>
+            <input 
+            className="text-info"
+            type="text" 
+            name="newName"
+            placeholder="name"
+            onChange={handleChange} />
+            <input
+            className="text-info"
+            type="text"
+            activity="activity"
+            placeholder="activity"
+            onChange={handleUpdate} />
+            <input
+            className="text-info"
+            type="text"
+            value1="value1"
+            placeholder="new cat" />
+            <button onClick={handleNew}>Add Cat</button>
+            <p className="title">
+                {value.name} is {value.activity}
+            </p>
+            <p className="title">
+                {value.newCat}
+            </p>
             <ul style={{ listStyleType: "none"}}>
                 <li>
-                    <button onClick={() => catEat()}>Eating</button>
+                    <button onClick={handleClick} value="eating">
+                        Eating
+                    </button>
                 </li>
                 <li>
-                    <button onClick={() => catNap()}>Napping</button>
+                    <button onClick={handleClick} value="playing">
+                        Playing
+                    </button>
                 </li>
                 <li>
-                    <button onClick={() => catPlay()}>Playing</button>
+                    <button onClick={handleClick} value="napping">
+                        Napping
+                    </button>
                 </li>
             </ul>
         </div>
     );
 };
 
-const mapStateToProps = state => {
-    const { activity } = state;
-    return activity;
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        catEat: () => dispatch(catEat()),
-        catNap: () => dispatch(catNap()),
-        catPlay: () => dispatch(catPlay()),
-        setName: (gus) => dispatch(setName(gus))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Activity);
+export default Activity;
