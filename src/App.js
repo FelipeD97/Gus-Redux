@@ -10,8 +10,16 @@ import { StateProvider } from "./context";
 
 function App() {
   const initialState = {
-    name: "Gus",
-    activity: "purring"
+    cats: {
+      1001: {
+        name: "Gus",
+        activity: "purring"
+      },
+      1002: {
+        name: "Louie",
+        activity: "scratching"
+      }
+    }
   }
 
   return (

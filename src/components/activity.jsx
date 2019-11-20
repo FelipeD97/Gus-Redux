@@ -52,7 +52,8 @@ const Activity = () => {
         e.preventDefault();
         dispatch({
             type: "addCat",
-            newCat: e.target.value
+            newCatName: "foo",
+            newCatActivity: "sleeping"
         })
     }
 
@@ -72,7 +73,6 @@ const Activity = () => {
                 onChange={handleUpdate} />
                 <Input
                 type="text"
-                value1="value1"
                 placeholder="new cat" />
                 <Button onClick={handleNew}>Add Cat</Button>
             </div>
@@ -80,7 +80,7 @@ const Activity = () => {
                 {value.name} is {value.activity}
             </p>
             <p>
-                {value.newCat}
+                {value.name}
             </p>
             <div className="activity-button-container">
                 <ul style={{ listStyleType: "none"}}>
@@ -101,7 +101,10 @@ const Activity = () => {
                     </li>
                 </ul>
             </div>
-            
+            <div className="cat-container">
+			    <div className="cat"></div>
+			    <div className="cat-movement"></div>
+	</div>
         </div>
     );
 };

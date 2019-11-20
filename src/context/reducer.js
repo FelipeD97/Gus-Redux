@@ -2,8 +2,10 @@ const reducer = (state, action) => {
     switch (action.type) {
       case "changeActivity":
         return {
-          ...state, 
-          activity: action.activity
+          ...state,
+          cats: {
+            activity: action.activity
+          }
         };
         case "changeName":
           return {
@@ -18,8 +20,9 @@ const reducer = (state, action) => {
             case "addCat":
               return {
                 ...state,
-                cats: action.newCat
-              }
+                name: action.newCatName,
+                activity: action.newCatActivity
+              };
         default:
           return state;
     }
